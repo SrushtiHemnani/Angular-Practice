@@ -1,16 +1,31 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-housing-location',
   standalone: true,
   imports: [],
   template: `
-    <p>
-      Hello Appcarry
-    </p>
+  <section class="listing">
+    <img class="listing-photo" [src]="housingLocation.photo" width=40 height=40 alt="Exterior photo of {{housingLocation.name}} ">
+    <h2 class="listing-heading">{{ housingLocation.name }}</h2>
+    <p class="listing-location">{{ housingLocation.city}}, {{housingLocation.state }}</p>
+  </section>
   `,
   styleUrl: './housing-location.component.css'
+
 })
 export class HousingLocationComponent {
-
+  @Input() housingLocation!: HousingLocation;
+}
+export interface HousingLocation {
+  id: number;
+  name: string;
+  city: string;
+  state: string;
+  photo: string;
+  availableUnits: number;
+  wifi: boolean;
+  laundry: boolean;
 }
